@@ -1,0 +1,32 @@
+select * from actor limit 10;
+select * from address;
+
+select * from actor limit 100;
+select * from actor offset 100 limit 100;
+select * from actor order by last_name offset 100 limit 100;
+
+SELECT amount, customer_id, COUNT(amount) FROM payment;
+SELECT COUNT (amount) FROM payment;
+
+SELECT customer_id, COUNT(amount) FROM payment GROUP BY customer_id;
+SELECT customer_id, SUM(amount) AS "total" FROM payment GROUP BY customer_id ORDER BY "total" DESC LIMIT 10;
+
+SELECT * FROM film;
+
+SELECT COUNT(film_id) AS "Total films" FROM film;
+
+SELECT rating, COUNT(film_id) AS "Total Films" FROM film GROUP BY rating;
+
+select avg(rental_duration) AS "average_rental_period" FROM film;
+
+select rental_duration, MIN(rental_rate) AS "min_rental_rate", 'film' AS "tablename"
+from film
+group by rental_duration;
+
+select rental_duration, max(rental_rate) as "max rental rate"
+from film as f
+group by rental_duration;
+
+create view f as (select rental_duration, max(rental_rate) as "max rental rate"
+from film 
+group by rental_duration);
